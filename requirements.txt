@@ -218,3 +218,4 @@ wrapt==1.16.0
 yarg==0.1.9
 yarl==1.9.3
 zipp==3.15.0
+zstandard @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_99wz2rcox4/croots/recipe/zstandard_1663827384884/work
