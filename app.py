@@ -3,6 +3,7 @@ from PIL import Image
 import streamlit as st
 import plotly.express as px
 from streamlit.components.v1 import html
+from ipyvizzu import Chart, Data, Config, Style, DisplayTarget
 
 # Function to create Plotly line plot for spending trends
 def plot_spending_trends(data, league):
