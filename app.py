@@ -38,18 +38,24 @@ st.title('The Financial Dynamics of European Football\'s Elite Leagues')
 
 # Introduction to Football Transfer Market
 st.header("Introduction to the Football Transfer Market")
-st.markdown("""[Introduction Text]""", unsafe_allow_html=True)
+st.markdown("""
+    The world of European football is not just a sporting arena but also a financial juggernaut. The transfer market, in particular, showcases the economic prowess of football clubs, highlighting a complex web of negotiations, strategic investments, and financial gambits. At the heart of this market are the top European leagues – the Premier League, La Liga (Primera División), Bundesliga, Serie A, and Ligue 1. These leagues are not just football competitions; they are economic ecosystems that drive the global football economy. The flow of money in the form of transfer fees reveals a landscape where clubs vie for glory, both on and off the field. This story explores the intricacies of the transfer market, delving into the spending patterns, the valuation of player skills, and how financial strategies shape the competitive landscape of European football.
+""", unsafe_allow_html=True)
 
 # League-Wise Spending Overview
 st.header("League-Wise Spending Overview")
-st.markdown("""[Description Text for League-Wise Spending Overview]""")
+st.markdown("""
+    The financial might of European football leagues is evident in their spending patterns. Here we compare the total spending of different leagues within the selected timespan.
+""")
 league_spending = combined_transfers[combined_transfers['transfer_movement'] == 'in'].groupby('League Name')['Transfer Fee in Millions'].sum().reset_index().sort_values(by='Transfer Fee in Millions', ascending=False)
 fig = px.bar(league_spending, x='League Name', y='Transfer Fee in Millions', title='Total Spending per League (in Million €)')
 st.plotly_chart(fig)
 
 # Top 5 Earning Clubs in Each League
 st.header("Top 5 Earning Clubs in Each League")
-st.markdown("""[Text about top 5 earning clubs in each league]""")
+st.markdown("""
+    [Text about top 5 earning clubs in each league.]
+""")
 top_earning_clubs = combined_transfers[combined_transfers['transfer_movement'] == 'out'].groupby(['League Name', 'Club Name'])['Transfer Fee in Millions'].sum().reset_index().sort_values(by=['League Name', 'Transfer Fee in Millions'], ascending=[True, False])
 top_5_earning_clubs_per_league = top_earning_clubs.groupby('League Name').head(5)
 fig = px.bar(top_5_earning_clubs_per_league, x='Club Name', y='Transfer Fee in Millions', color='League Name', title='Top 5 Earning Clubs in Each League (in Million €)')
