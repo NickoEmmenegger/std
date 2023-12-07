@@ -73,9 +73,12 @@ st.header("League-Wise Spending Overview")
 st.markdown("""
     Dive into the financial dynamics of Europe's elite football leagues, as seen through data spanning from 1992/93 to 2021/22. This comparative analysis sheds light on the diverse financial strategies employed across leagues – from prioritizing youth development to splurging on marquee signings. Each league's approach tells a unique story of financial planning, club philosophies, and market-driven tactics. The data reveals how spending patterns have evolved over nearly three decades, showcasing the economic growth and strategic shifts within these leagues.
 """)
+# Convert 'Transfer Fee in Millions' to billions
 league_spending = combined_transfers[combined_transfers['transfer_movement'] == 'in'].groupby('League Name')['Transfer Fee in Millions'].sum().reset_index().sort_values(by='Transfer Fee in Millions', ascending=False)
-fig = px.bar(league_spending, x='League Name', y='Transfer Fee in Millions', title='Total Spending per League (in Million €)')
-st.plotly_chart(fig)
+league_spending['Transfer Fee in Billions'] = league_spending['Transfer Fee in Millions'] / 1000
+# Create the bar plot with values in billions
+fig = px.bar(league_spending, x='League Name', y='Transfer Fee in Billions', title='Total Spending per League (in Billion €)', labels={'Transfer Fee in Billions': 'Total Spending (in Billion €)'})
+st.plotly_chart(fig, use_container_width=True)
 
 # Top 5 Earning Clubs in Each League
 st.header("Top 5 Earning Clubs in Each League")
@@ -102,9 +105,13 @@ st.header("High-Value Player Transfer Trends")
 st.markdown("""
     The high-value transfer segment of the market, from 1992/93 to 2021/22, is a clear indicator of a club’s financial muscle and strategic intent. This analysis also touches upon the impact of external factors such as the COVID-19 pandemic, which has prompted a recalibration of transfer strategies, reflecting the market's resilience and adaptability in face of global economic shifts.
 """)
-high_value_transfers = combined_transfers[combined_transfers['Transfer Fee in Millions'] > 50].sort_values(by='season')
+def convert_season_to_year(season):
+    return int(season.split('/')[0])
+combined_transfers['season_start_year'] = combined_transfers['season'].apply(convert_season_to_year)
+sorted_transfers = combined_transfers.sort_values('season_start_year')
+high_value_transfers = sorted_transfers[sorted_transfers['Transfer Fee in Millions'] > 50]
 fig = px.scatter(high_value_transfers, x='season', y='Transfer Fee in Millions', color='League Name', hover_data=['player_name', 'Club Name'], title='High-Value Player Transfer Trends (Transfers Over 50 Million €)')
-st.plotly_chart(fig)
+st.plotly_chart(fig, use_container_width=True)
 
 # Age vs Transfer Fee Analysis for High-Value Players
 st.header("Age vs Transfer Fee Analysis for High-Value Players")
