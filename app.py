@@ -65,8 +65,38 @@ if screen_width > 0:
 # Introduction to Football Transfer Market
 st.header("Introduction to the Football Transfer Market")
 st.markdown("""
-    The European football transfer market, covering data from the 1992/93 to 2021/22 seasons, presents a dynamic and evolving financial powerhouse, reflecting the sport's competitive spirit and economic evolution. This period has witnessed groundbreaking transfers that have redefined club strategies and economic approaches. Today, it stands as a testament to the evolving financial capabilities of clubs, shaped by sponsorships, media rights, and transformative ownership models. This narrative delves into the pulsating heart of this market, exploring the spending trends, player valuations, and the strategic financial maneuvers that define the competitive landscape of Europe's top football leagues.
+    This exploration dives deep into the financial dynamics of European football, focusing on the top five leagues, known for their competitive spirit and economic prowess. These leagues include:
+
+    - **Premier League** (England): Renowned for its intense competition and global fanbase, the Premier League stands as a symbol of English football's rich history and financial strength.
+    - **La Liga** (Spain): Home to some of the world's most famous clubs, La Liga combines technical skill with the passion of Spanish football culture.
+    - **Bundesliga** (Germany): Known for its world-class player development and fan-friendly atmosphere, the Bundesliga is a cornerstone of German football.
+    - **Serie A** (Italy): With a legacy of tactical innovation, Serie A has been the breeding ground for some of football's greatest legends.
+    - **Ligue 1** (France): A league that has risen rapidly in profile, Ligue 1 is marked by its flair and the emergence of global football stars.
+
+    These leagues not only represent the pinnacle of European football but also serve as significant economic entities in the global sports market. The following analysis presents a comprehensive view of their financial transactions, particularly in player transfers, from the 1992/93 to 2021/22 seasons.
 """, unsafe_allow_html=True)
+
+# Assuming you have the logo images stored in the 'images' folder
+premier_league_logo = 'images/premier_league_logo.jpg'
+la_liga_logo = 'images/la_liga_logo.jpg'
+bundesliga_logo = 'images/bundesliga_logo.jpg'
+serie_a_logo = 'images/serie_a_logo.jpg'
+ligue_1_logo = 'images/ligue_1_logo.jpg'
+logos = [premier_league_logo, la_liga_logo, bundesliga_logo, serie_a_logo, ligue_1_logo]
+
+# Logos and their descriptions
+logos = [
+    (premier_league_logo, "Premier League"),
+    (la_liga_logo, "La Liga"),
+    (bundesliga_logo, "Bundesliga"),
+    (serie_a_logo, "Serie A"),
+    (ligue_1_logo, "Ligue 1")
+]
+
+# Display logos with descriptions side by side
+cols = st.columns(5)
+for col, (logo, description) in zip(cols, logos):
+    col.image(logo, caption=description, use_column_width=True)
 
 # League-Wise Spending Overview
 st.header("League-Wise Spending Overview")
