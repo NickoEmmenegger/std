@@ -144,7 +144,7 @@ with col1:
     st.image(neymar_image, caption='Neymar')
 
 with col2:
-    st.image(psg_logo, caption='Paris Saint-Germain Logo')
+    st.image(psg_logo, caption='Paris Saint-Germain')
 
 with col3:
     st.image(mbappe_image, caption='Kylian Mbappé')
