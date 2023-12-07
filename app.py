@@ -33,19 +33,24 @@ def load_data():
 # Load data
 combined_transfers = load_data()
 
+# URLs or paths to the images
+neymar_image = 'images/neymar_image.jpg'
+psg_logo = 'images/psg_logo.jpg'
+mbappe_image = 'images/mbappe_image.jpg'
+
 # App title
 st.title('The Financial Dynamics of European Football\'s Elite Leagues')
 
 # Introduction to Football Transfer Market
 st.header("Introduction to the Football Transfer Market")
 st.markdown("""
-    The world of European football is not just a sporting arena but also a financial juggernaut. The transfer market, in particular, showcases the economic prowess of football clubs, highlighting a complex web of negotiations, strategic investments, and financial gambits. At the heart of this market are the top European leagues – the Premier League, La Liga (Primera División), Bundesliga, Serie A, and Ligue 1. These leagues are not just football competitions; they are economic ecosystems that drive the global football economy. The flow of money in the form of transfer fees reveals a landscape where clubs vie for glory, both on and off the field. This story explores the intricacies of the transfer market, delving into the spending patterns, the valuation of player skills, and how financial strategies shape the competitive landscape of European football.
+    The European football transfer market is a dynamic and evolving financial powerhouse, reflecting more than just the sport's competitive spirit. Historically, it has seen groundbreaking transfers that have redefined club strategies and economic approaches. Today, it stands as a testament to the evolving financial capabilities of clubs, shaped by sponsorships, media rights, and transformative ownership models. This narrative delves into the pulsating heart of this market, exploring the spending trends, player valuations, and the strategic financial maneuvers that define the competitive landscape of Europe's top football leagues.
 """, unsafe_allow_html=True)
 
 # League-Wise Spending Overview
 st.header("League-Wise Spending Overview")
 st.markdown("""
-    The financial might of European football leagues is evident in their spending patterns. Here we compare the total spending of different leagues within the selected timespan.
+    Dive into the financial dynamics of Europe's elite football leagues, where spending patterns reveal more than just numbers. This comparative analysis sheds light on the diverse financial strategies employed across leagues – from prioritizing youth development to splurging on marquee signings. Each league's approach, whether it's the Premier League's global branding prowess or La Liga's blend of star power and homegrown talents, tells a unique story of financial planning, club philosophies, and market-driven tactics.
 """)
 league_spending = combined_transfers[combined_transfers['transfer_movement'] == 'in'].groupby('League Name')['Transfer Fee in Millions'].sum().reset_index().sort_values(by='Transfer Fee in Millions', ascending=False)
 fig = px.bar(league_spending, x='League Name', y='Transfer Fee in Millions', title='Total Spending per League (in Million €)')
@@ -54,7 +59,7 @@ st.plotly_chart(fig)
 # Top 5 Earning Clubs in Each League
 st.header("Top 5 Earning Clubs in Each League")
 st.markdown("""
-    [Text about top 5 earning clubs in each league.]
+    The top 5 earning clubs in each league are not just football entities; they are economic models of success. This section examines how their on-field performances in domestic and European competitions translate into robust revenue streams, shaping their stature in the transfer market. It's a cycle of success – sporting triumphs boost a club's brand value, attracting sponsorships and investments, which in turn fund future transfers, completing the financial loop.
 """)
 top_earning_clubs = combined_transfers[combined_transfers['transfer_movement'] == 'out'].groupby(['League Name', 'Club Name'])['Transfer Fee in Millions'].sum().reset_index().sort_values(by=['League Name', 'Transfer Fee in Millions'], ascending=[True, False])
 top_5_earning_clubs_per_league = top_earning_clubs.groupby('League Name').head(5)
@@ -64,7 +69,7 @@ st.plotly_chart(fig)
 # Club-Level Spending Analysis
 st.header("Club-Level Spending Analysis")
 st.markdown("""
-    Analyzing the spending of individual clubs offers insights into their financial strategies. Here are the top 5 spending clubs in each league.
+    This analysis offers a glimpse into how club-level spending correlates with success on the pitch. We look at examples of clubs that have mastered the art of building winning teams through judicious spending and those who, despite hefty investments, have yet to see proportional returns. It’s a complex balance of financial acumen and sporting insight, where every euro spent is a bet on future glory.
 """)
 top_clubs = combined_transfers.groupby(['League Name', 'Club Name'])['Transfer Fee in Millions'].sum().reset_index().sort_values(by=['League Name', 'Transfer Fee in Millions'], ascending=[True, False])
 top_5_clubs_per_league = top_clubs.groupby('League Name').head(5)
@@ -74,7 +79,7 @@ st.plotly_chart(fig)
 # High-Value Player Transfer Trends
 st.header("High-Value Player Transfer Trends")
 st.markdown("""
-    High-value player transfers, often exceeding 50 million euros, are key indicators of a club's financial strength and strategic ambitions.
+    The high-value transfer segment of the market is a clear indicator of a club’s financial muscle and strategic intent. This analysis also touches upon the impact of external factors such as the COVID-19 pandemic, which has prompted a recalibration of transfer strategies, reflecting the market's resilience and adaptability in face of global economic shifts.
 """)
 high_value_transfers = combined_transfers[combined_transfers['Transfer Fee in Millions'] > 50].sort_values(by='season')
 fig = px.scatter(high_value_transfers, x='season', y='Transfer Fee in Millions', color='League Name', hover_data=['player_name', 'Club Name'], title='High-Value Player Transfer Trends (Transfers Over 50 Million €)')
@@ -83,7 +88,7 @@ st.plotly_chart(fig)
 # Age vs Transfer Fee Analysis for High-Value Players
 st.header("Age vs Transfer Fee Analysis for High-Value Players")
 st.markdown("""
-    The correlation between a player's age and their transfer fee is particularly pronounced in high-value transfers. This plot focuses on transfers exceeding 50 million euros.
+    In high-value transfers, the correlation between a player's age and their market value is stark. This segment focuses on how 'peak age' varies across positions and significantly influences transfer fees. Young prospects command high prices for their potential, while experienced players bring immediate prowess, each age bracket carrying its unique appeal and risk.
 """)
 fig = px.scatter(high_value_transfers, x='age', y='Transfer Fee in Millions', color='League Name', hover_data=['player_name', 'Club Name'], title='Age vs Transfer Fee for High-Value Players (Transfers Over 50 Million €)')
 st.plotly_chart(fig)
@@ -91,16 +96,29 @@ st.plotly_chart(fig)
 # Spending by Player Position for High-Value Players
 st.header("Spending by Player Position for High-Value Players")
 st.markdown("""
-    Different positions command varying transfer fees. This analysis focuses on high-value transfers (over 50 million euros) and explores spending by player position.
+    This section unravels the economic logic behind the varying transfer fees for different player positions in high-value transfers. Understanding this aspect offers insights into how clubs value skills and roles differently based on market demand, tactical trends, and the rarity of skill sets.
 """)
 position_order = ['Goalkeeper', 'Defence', 'Right-Back', 'Centre-Back', 'Left-Back', 'Midfield', 'Defensive Midfield', 'Right Midfield', 'Central Midfield', 'Left Midfield', 'Attacking Midfield', 'Attack', 'Right Winger', 'Left Winger', 'Centre-Forward', 'Second Striker']
 fig = px.scatter(high_value_transfers, x='position', y='Transfer Fee in Millions', color='League Name', hover_data=['player_name'], title='Spending by Player Position for High-Value Players (Transfers Over 50 Million €)', category_orders={"position": position_order})
 st.plotly_chart(fig)
+st.markdown("""
+    In recent headline-making transfers, players like Neymar and Kylian Mbappé of Paris Saint-Germain (PSG) have dominated the scene. PSG's ability to fund such high-profile signings stems from their substantial financial backing by Qatar Sports Investments. This investment has not only elevated PSG’s status in the transfer market but also underscores the growing influence of affluent ownership in reshaping the financial landscape of European football.
+""")
+# Display the images side by side
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.image(neymar_image, caption='Neymar', width=200)
+
+with col2:
+    st.image(psg_logo, caption='Paris Saint-Germain Logo', width=200)
+
+with col3:
+    st.image(mbappe_image, caption='Kylian Mbappé', width=200)
 
 # Conclusion
 st.header("Conclusion: The Economic Powerhouses of Football")
 st.markdown("""
-    This exploration into the economic underpinnings of European football's elite leagues uncovers a world where financial muscle is as crucial as sporting talent. The staggering sums involved in high-value player transfers reflect the strategic importance clubs place on acquiring top talent. The correlation between investment in player transfers and on-field success is evident, yet it's also a landscape filled with financial risks and rewards. Clubs must navigate this complex market with a blend of financial acumen and sporting insight. The transfer market is a mirror to the broader economic health of football, where the interplay of revenue streams, market valuations, and strategic investments dictates the hierarchy of European football. Ultimately, the financial dynamics of player transfers are a key component of the modern football narrative, shaping the destiny of clubs and leagues alike.
+    Our journey through the economic underpinnings of European football concludes here, but the story of this financial behemoth continues. Looking ahead, the transfer market is poised to be shaped by emerging trends like new broadcasting deals, the digital transformation of sports, and innovative fan engagement strategies. The interplay of these factors with traditional revenue streams will continue to redefine the economic hierarchy of clubs and leagues, shaping the future narrative of football both on and off the field.
 """, unsafe_allow_html=True)
 
 # End of Script
