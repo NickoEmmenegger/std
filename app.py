@@ -62,9 +62,6 @@ if screen_width == 0:
 if screen_width > 0:
     st.session_state['screen_width'] = screen_width
 
-# App title
-st.title('The Financial Dynamics of European Football\'s Elite Leagues')
-
 # Introduction to Football Transfer Market
 st.header("Introduction to the Football Transfer Market")
 st.markdown("""
