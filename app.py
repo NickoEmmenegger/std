@@ -93,10 +93,13 @@ logos = [
     (ligue_1_logo, "Ligue 1")
 ]
 
+# Set a fixed height for all logos
+logo_height = 150  # You can adjust this value as needed
+
 # Display logos with descriptions side by side
 cols = st.columns(5)
 for col, (logo, description) in zip(cols, logos):
-    col.image(logo, caption=description, use_column_width=True)
+    col.image(logo, caption=description, height=logo_height)
 
 # League-Wise Spending Overview
 st.header("League-Wise Spending Overview")
