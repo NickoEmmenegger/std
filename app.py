@@ -117,7 +117,7 @@ st.markdown("""
 league_spending = combined_transfers[combined_transfers['transfer_movement'] == 'in'].groupby('League Name')['Transfer Fee in Millions'].sum().reset_index().sort_values(by='Transfer Fee in Millions', ascending=False)
 league_spending['Transfer Fee in Billions'] = league_spending['Transfer Fee in Millions'] / 1000
 # Create the bar plot with values in billions
-fig = px.bar(league_spending, x='League Name', y='Transfer Fee in Billions', title='Total Spending per League', labels={'Transfer Fee in Billions': 'Total Spending in Billion €'})
+fig = px.bar(league_spending, x='League Name', y='Transfer Fee in Billions', title='Total Spending per League', labels={'Transfer Fee in Billions': 'Total Spending in Billions'})
 st.plotly_chart(fig, use_container_width=True)
 
 # Top 5 Earning Clubs in Each League
