@@ -7,3 +7,4 @@ seaborn==0.13.2
 altair==5.5.0
 scikit-learn==1.5.2
 contourpy==1.2.1
+kagglehub==0.3.6
