@@ -24,18 +24,21 @@ top_scorers = pd.read_csv(top_scorers_path)
 top_assists = pd.read_csv(top_assists_path) if os.path.exists(top_assists_path) else None
 possession_data = pd.read_csv(possession_path)
 
+
 # Introduction
 st.title("How Did Manchester City Win the 2023/24 Premier League?")
 st.markdown("---")
 st.header("Setting the Stage")
 st.write(
-    "Manchester City entered the 2023/24 Premier League season as defending champions, a title they had won multiple times in the last decade. "
-    "But winning the league again in the world's most competitive football league is never guaranteed. "
-    "The Premier League is known for its unpredictability and intense competition, where even the strongest teams can falter. "
-    "City's journey this season was filled with challenges, from injuries to key players to fierce competition from rivals like Arsenal, Liverpool, and Manchester United. "
-    "Despite these hurdles, City showcased their dominance once again, combining tactical brilliance, individual performances, and sheer determination to claim the title. "
-    "This data story explores the key factors that contributed to their success, including their exceptional attack, solid defense, and the influence of Pep Guardiola. "
+    "Manchester City entered the 2023/24 Premier League season not just as defending champions but as a team carrying the weight of expectations in one of the most competitive leagues in the world. "
+    "Winning the title is a monumental challenge, and retaining it in consecutive seasons is an even greater feat. The Premier League is known for its unpredictability, where even the strongest teams can stumble against determined opponents. "
+    "Yet, this season was different. City faced fierce competition from rivals like Arsenal, Liverpool, and Manchester United, endured injuries to key players, and navigated through tactical dilemmas. "
+    "But what sets this campaign apart from their previous triumphs? Was it the sheer consistency that saw them amass 91 points, or the resilience to overcome challenges that would have derailed most teams? "
+    "\n\n"
+    "This data story delves into what made their journey so remarkable. It examines not only the tactical brilliance and individual performances that defined their season but also the adversities they overcame to make this season into history. "
+    "Compared to previous campaigns, this was a season of evolution, showcasing Guardiola’s ability to adapt and innovate while the team redefined the benchmarks of football excellence."
 )
+
 
 # Visualization: Points Comparison
 st.subheader("Points Comparison Across Teams")
@@ -45,7 +48,6 @@ st.write(
     "Interestingly, over the last two seasons, this average has slightly dropped to 90.0 points, showcasing the high standards Guardiola and his team have set for the league. "
     "The Premier League table highlights Manchester City's consistency and dominance, finishing with 91 points. "
     "This achievement is even more impressive considering the competitiveness of the league, where every point must be earned through hard-fought matches. "
-    "The points tally not only underscores their exceptional season but also places them well above the league average of champions over the years. "
     "Interestingly, Arsenal's 89 points also surpass the historical league average of 87.8, highlighting the high standards of competition in the 2023/24 season."
 )
 
@@ -69,6 +71,7 @@ fig.add_hline(y=90.0, line_dash="dot", line_color="green", annotation_text="Rece
 fig.update_layout(xaxis_tickangle=-45)
 st.plotly_chart(fig, use_container_width=True)
 st.markdown("---")
+
 
 # Attack and Defense
 st.header("Manchester City's Attack and Defense")
@@ -122,22 +125,55 @@ fig.update_layout(xaxis_tickangle=-45)
 st.plotly_chart(fig, use_container_width=True)
 st.markdown("---")
 
+
+# Challenges Faced by Manchester City
+st.header("Challenges Faced by Manchester City")
+st.write(
+    "Manchester City's path to the 2023/24 Premier League title was anything but smooth. "
+    "The season posed several significant challenges that tested the team’s resilience and ability to adapt. "
+    "Despite their eventual triumph, these hurdles highlighted the effort required to maintain dominance in the world's toughest football league."
+)
+
+st.subheader("Key Injuries to Star Players")
+st.write(
+    "One of the most notable challenges was the absence of key players due to injuries. Kevin De Bruyne, "
+    "the creative heartbeat of the midfield, missed large portions of the season due to recurring injuries. "
+    "Similarly, defensive stalwarts like John Stones faced fitness issues, forcing Guardiola to reshuffle his tactical setup. "
+    "Phil Foden, Rodri, and other squad members stepped up to fill these voids, but the disruption required constant adjustments to maintain performance."
+)
+
+st.subheader("Intense Competition from Arsenal")
+st.write(
+    "Arsenal emerged as a formidable rival during the campaign, pushing Manchester City to the limit. "
+    "With their exceptional defensive record and consistent performances, Arsenal stayed neck-and-neck with City in the title race. "
+    "The competition added pressure to every match, with City needing to secure critical victories to stay ahead in the standings. "
+    "This rivalry injected a sense of urgency into their campaign and highlighted the importance of composure and focus in high-stakes games."
+)
+
+st.subheader("Managing Multiple Competitions")
+st.write(
+    "Competing on multiple fronts, including the Champions League and domestic cups, placed immense physical and mental strain on the squad. "
+    "Balancing the demands of different tournaments required meticulous squad rotation and workload management. "
+    "Guardiola’s tactical adjustments and the team’s depth allowed them to handle this pressure, but it often came at the cost of fatigue and occasional dips in performance."
+)
+
+st.markdown("---")
+
+
 # Tactical Mastery and Guardiola's Influence
 st.header("Tactical Mastery and Guardiola's Influence")
 st.write(
-    "Pep Guardiola's tactical philosophy is a cornerstone of Manchester City's success. "
-    "His approach emphasizes control, creativity, and adaptability, allowing City to dominate games regardless of the opponent. "
-    "This season, Guardiola's tactics were evident in City's high possession rates and their ability to break down defensive blocks. "
-    "Key to their strategy was the use of overlapping fullbacks and midfield rotations, which created numerical advantages in critical areas of the pitch. "
-    "Guardiola's emphasis on positional play ensures that every player knows their role, making City a well-oiled machine on the field. "
+    "Pep Guardiola's tactical philosophy is a cornerstone of Manchester City's success. His approach emphasizes control, creativity, and adaptability, allowing City to dominate games regardless of the opponent. "
+    "This season, Guardiola's tactics were evident in City's high possession rates and their ability to break down defensive blocks. His emphasis on positional play ensures that every player knows their role, "
+    "making City a well-oiled machine on the field. Guardiola's brilliance was further recognized when he was awarded the 'Manager of the Season' title, a testament to his outstanding leadership and tactical ingenuity."
 )
-pep_image = Image.open("pep_guardiola.jpg")  # Replace with the correct image path
+pep_image = Image.open("pep_guardiola.jpg")
 st.image(pep_image, caption="Pep Guardiola", use_container_width=True)
 st.write(
-    "His innovative use of players in multiple positions, such as John Stones stepping into midfield, added an unpredictable element to City's gameplay. "
-    "This flexibility made it nearly impossible for opponents to anticipate City's approach, giving them an edge in crucial matches. "
-    "Guardiola's brilliance was further recognized when he was awarded the 'Manager of the Season' title, a testament to his outstanding leadership and tactical ingenuity."
+    "Guardiola's adaptability was critical in overcoming tactical challenges posed by other top teams. For instance, his use of John Stones in a hybrid defender-midfielder role disrupted opponents' plans and added "
+    "an element of surprise to City's gameplay. This tactical flexibility, combined with meticulous planning and execution, allowed City to maintain their dominance throughout the season."
 )
+st.markdown("---")
 
 # Visualization: Possession Percentage
 st.subheader("Control as a Strategy")
@@ -172,6 +208,7 @@ st.write(
     "This dual focus on results and entertainment has made Manchester City a joy to watch and a nightmare to compete against."
 )
 st.markdown("---")
+
 
 # The Team Behind the Success
 st.header("The Team Behind the Success")
@@ -230,41 +267,28 @@ st.write(
 )
 st.markdown("---")
 
-# Filter for Manchester City vs Top Teams
-st.header("Manchester City vs Top Teams")
-matches['Score'] = matches['Score'].str.replace('_', ' : ').str.strip()
 
+# Manchester City vs Top Teams
+st.header("Manchester City vs Top Teams")
 st.write(
-    "The Premier League's competitiveness is especially evident in matches between the top teams. "
-    "Manchester City's performance against Arsenal, Liverpool, Manchester United, Tottenham Hotspur, and Chelsea "
-    "showcases their ability to dominate and deliver in high-stakes games. "
-    "Remarkably, City only suffered one defeat against these top teams during the entire season, "
-    "underscoring their consistency and tactical superiority. "
-    "This success was not just a result of tactical brilliance but also the team's remarkable mental strength. "
-    "In challenging situations, whether trailing in a match or playing under intense pressure, City consistently displayed composure and resilience. "
-    "Their ability to bounce back from setbacks, stay focused during pivotal moments, and maintain their competitive edge "
-    "was instrumental in achieving positive results against the league's toughest opponents. "
-    "Use the filter below to select a specific team and see how City fared against them during the 2023/24 season, with match results and team logos displayed."
+    "The Premier League's competitiveness is especially evident in matches between the top teams. Manchester City's performance against Arsenal, Liverpool, Manchester United, Tottenham Hotspur, and Chelsea "
+    "showcases their ability to dominate and deliver in high-stakes games. Remarkably, City only suffered one defeat against these top teams during the entire season, underscoring their consistency and tactical superiority. "
+    "This success was not just a result of tactical brilliance but also the team's remarkable mental strength. In challenging situations, whether trailing in a match or playing under intense pressure, City consistently displayed composure and resilience."
 )
 
+# Filter for Opponent Teams
+matches['Score'] = matches['Score'].str.replace('_', ' : ').str.strip()
 top_teams = ["Arsenal", "Liverpool", "Manchester United", "Tottenham Hotspur", "Chelsea"]
-
-# Add a filter for selecting an opposing team
 selected_team = st.selectbox("Select Opponent:", options=top_teams)
-
-# Filter matches based on the selected team
 filtered_matches = matches[
     ((matches["Home Team"] == "Manchester City") & (matches["Away Team"] == selected_team)) |
     ((matches["Away Team"] == "Manchester City") & (matches["Home Team"] == selected_team))
 ]
-
-# Display match results with team logos
 st.write(f"### Matches against {selected_team}")
 
 for index, row in filtered_matches.iterrows():
     home_logo_path = f"logos/{row['Home Team'].replace(' ', '_').lower()}.png"
     away_logo_path = f"logos/{row['Away Team'].replace(' ', '_').lower()}.png"
-    
     col1, col2, col3 = st.columns([1, 2, 1])
     with col1:
         if os.path.exists(home_logo_path):
@@ -284,19 +308,24 @@ for index, row in filtered_matches.iterrows():
 
 st.markdown("---")
 
+
 # Conclusion
-st.header("What We Learned")
+st.header("Conclusion")
 st.write(
-    "Manchester City's triumph in the 2023/24 Premier League season is a testament to their excellence across all facets of the game. "
-    "From tactical brilliance to individual performances, they demonstrated an unrivaled ability to adapt and overcome challenges. "
-    "Their performance against the top teams, where they suffered only one defeat, further highlights their dominance and resilience. "
-    "Pep Guardiola's influence remains at the core of this success. His ability to innovate and optimize team dynamics ensured City maintained their competitive edge. "
-    "Phil Foden's emergence as Player of the Season emphasizes the success of the club's academy and their focus on nurturing homegrown talent. "
-    "Foden's creative play and goal contributions made him a standout in a team filled with stars. "
-    "Furthermore, Manchester City's strategic investments in the transfer market, including players like Joško Gvardiol, Mateo Kovačić, and Jérémy Doku, "
-    "demonstrated their commitment to long-term success. These additions enhanced the team's depth and flexibility, enabling them to compete across multiple competitions. "
-    "Their ability to balance defensive solidity with attacking flair set them apart from their rivals. While Arsenal showed a stronger expected goals conceded metric, "
-    "City's prolific goal-scoring ability ensured their dominance in the league. "
-    "The team's performance reflects meticulous planning, precise execution, and a relentless desire to stay at the top. "
-    "As they look ahead, Manchester City will aim to continue setting new benchmarks in football, inspiring future generations and redefining the standards of excellence."
+    "Manchester City’s 2023/24 Premier League campaign will be remembered as a season of resilience, brilliance, and triumph over adversity. "
+    "Despite facing challenges such as injuries to star players like Kevin De Bruyne, intense competition from Arsenal, "
+    "and the demands of managing multiple competitions, City adapted and overcame. "
+    "The team’s depth, with players like Phil Foden stepping into critical roles, and Guardiola’s tactical ingenuity, "
+    "ensured they maintained consistency. Arsenal’s defensive strength kept the title race tight, but City’s superior goal-scoring ability "
+    "and mental resilience ultimately set them apart. Their dominance against top teams and ability to thrive in high-pressure moments "
+    "highlighted the incredible synergy within the team and Guardiola’s exceptional leadership."
+)
+
+st.write(
+    "City’s journey wasn’t just about retaining their title but about redefining dominance in the Premier League. "
+    "Strategic acquisitions, like Joško Gvardiol and Mateo Kovačić, added fresh depth to the squad, ensuring long-term success. "
+    "What makes this season unique isn’t just the points tally but how City overcame obstacles with determination and grit. "
+    "Their balance between individual brilliance and collective effort was key to their success. "
+    "This campaign proved that even in the face of adversity, tactical brilliance, mental strength, and squad depth can lead to greatness. "
+    "City’s triumph is a story of persistence, innovation, and an unrelenting hunger for excellence, cementing their place as the gold standard in modern football."
 )
